@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WeatherRetrofit</string>
+    <string name="london">London</string>
+</resources>
