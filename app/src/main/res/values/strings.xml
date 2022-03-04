@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">WeatherRetrofit</string>
     <string name="london">London</string>
+    <string name="tv_temp_actual">26°C</string>
+    <string name="current_temperature">Current temperature</string>
+    <string name="maximum_temperature">Maximum Temperature</string>
+    <string name="minimum_temperature">Minimum temperature</string>
 </resources>
