@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
 
+                    tvCity.setText(response.body().getName());
                     tvTempActual.setText(response.body().getMain().getTemp().toString());
                     tvTempMaximum.setText(response.body().getMain().getTempMax().toString());
                     tvTempMinimum.setText(response.body().getMain().getTempMin().toString());
