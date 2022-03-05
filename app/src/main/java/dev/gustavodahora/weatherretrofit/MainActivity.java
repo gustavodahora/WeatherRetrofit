@@ -1,7 +1,11 @@
 package dev.gustavodahora.weatherretrofit;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvTempActual;
 
     AppWeatherData appWeatherData;
+    ProgressDialog pd;
 
     Context context;
 
@@ -36,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void callApi() {
+        showDialog();
         appWeatherData = new AppWeatherData();
         APIUtil apiUtil = new APIUtil(appWeatherData,
                 context,
@@ -53,5 +59,15 @@ public class MainActivity extends AppCompatActivity {
                     getString(R.string.error_api_call),
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void showDialog() {
+        pd = new ProgressDialog(this, R.style.AppCompatAlertDialogStyle);
+        pd.setMessage(getString(R.string.loading_place));
+        pd.show();
+    }
+
+    public void dismissDialog() {
+        pd.dismiss();
     }
 }

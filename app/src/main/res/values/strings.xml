@@ -6,4 +6,6 @@
     <string name="maximum_temperature">Maximum Temperature</string>
     <string name="minimum_temperature">Minimum temperature</string>
     <string name="error_api_call">An error happened</string>
+    <string name="loading">Loading</string>
+    <string name="loading_place">Getting place Weather Data</string>
 </resources>

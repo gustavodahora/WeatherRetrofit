@@ -57,6 +57,7 @@ public class APIUtil {
                                        @NonNull Response<WeatherData> response) {
                     // Checking for the response
                     if (response.code() != 200) {
+                        mainActivity.dismissDialog();
                         Toast.makeText(activity,
                                 activity.getString(R.string.error_api_call),
                                 Toast.LENGTH_LONG).show();
@@ -66,7 +67,9 @@ public class APIUtil {
                     if (response.body() != null) {
                         responseData = response;
                         setupAppWeatherData();
+                        mainActivity.dismissDialog();
                     } else {
+                        mainActivity.dismissDialog();
                         Toast.makeText(context,
                                 activity.getString(R.string.error_api_call),
                                 Toast.LENGTH_LONG).show();
@@ -76,12 +79,14 @@ public class APIUtil {
                 @Override
                 public void onFailure(@NonNull Call<WeatherData> call,
                                       @NonNull Throwable t) {
+                    mainActivity.dismissDialog();
                     Toast.makeText(activity,
                             "Error = " + t,
                             Toast.LENGTH_LONG).show();
                 }
             });
         } catch (Exception e) {
+            mainActivity.dismissDialog();
             Toast.makeText(activity,
                     "Error = " + e,
                     Toast.LENGTH_LONG).show();
