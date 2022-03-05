@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/rounded_bottom.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1695" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.33" />
       </map>
     </option>

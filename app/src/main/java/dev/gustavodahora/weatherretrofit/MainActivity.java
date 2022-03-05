@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvCity;
     TextView tvTempActual;
+    ImageButton btnRefresh;
 
     AppWeatherData appWeatherData;
     ProgressDialog pd;
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     public void setupViews() {
         tvCity = findViewById(R.id.tv_city);
         tvTempActual = findViewById(R.id.tv_temp_actual);
+        btnRefresh = findViewById(R.id.btn_refresh);
+
+        btnRefresh.setOnClickListener(v -> callApi());
     }
 
     public void callApi() {

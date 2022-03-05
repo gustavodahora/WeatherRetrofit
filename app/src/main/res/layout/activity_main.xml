@@ -42,4 +42,17 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/btn_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_refresh_24"
+        app:tint="@color/white"
+        android:backgroundTint="@color/gray_background_dark"
+        android:paddingHorizontal="16sp"
+        android:paddingVertical="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_city"
+        android:contentDescription="@string/refresh_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
