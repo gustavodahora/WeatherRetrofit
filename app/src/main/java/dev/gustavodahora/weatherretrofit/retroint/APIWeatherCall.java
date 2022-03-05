@@ -1,6 +1,6 @@
 package dev.gustavodahora.weatherretrofit.retroint;
 
-import dev.gustavodahora.weatherretrofit.model.WeatherData;
+import dev.gustavodahora.weatherretrofit.model.weatherapi.WeatherData;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

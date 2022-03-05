@@ -1,5 +1,5 @@
 
-package dev.gustavodahora.weatherretrofit.model;
+package dev.gustavodahora.weatherretrofit.model.weatherapi;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
