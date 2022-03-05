@@ -1,10 +1,13 @@
 package dev.gustavodahora.weatherretrofit;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
 
 import dev.gustavodahora.weatherretrofit.model.WeatherData;
 import dev.gustavodahora.weatherretrofit.retroint.APIWeatherCall;
@@ -18,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvCity;
     TextView tvTempActual;
-    TextView tvTempMaximum;
-    TextView tvTempMinimum;
 
     String BASE_URL = "https://api.openweathermap.org/data/2.5/";
 
@@ -35,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
     public void setupViews() {
         tvCity = findViewById(R.id.tv_city);
         tvTempActual = findViewById(R.id.tv_temp_actual);
-        tvTempMaximum = findViewById(R.id.tv_temp_max);
-        tvTempMinimum = findViewById(R.id.tv_temp_min);
     }
 
     public void callApi() {
@@ -54,26 +53,34 @@ public class MainActivity extends AppCompatActivity {
 
             call.enqueue(new Callback<WeatherData>() {
                 @Override
-                public void onResponse(Call<WeatherData> call, Response<WeatherData> response) {
+                public void onResponse(@NonNull Call<WeatherData> call, @NonNull Response<WeatherData> response) {
                     // Checking for the response
                     if (response.code() != 200) {
                         Toast.makeText(MainActivity.this, getString(R.string.error_api_call), Toast.LENGTH_LONG).show();
                         return;
                     }
 
-                    tvCity.setText(response.body().getName());
-                    tvTempActual.setText(response.body().getMain().getTemp().toString());
-                    tvTempMaximum.setText(response.body().getMain().getTempMax().toString());
-                    tvTempMinimum.setText(response.body().getMain().getTempMin().toString());
+                    if (response.body() != null) {
+                        tvCity.setText(response.body().getName());
+                        tvTempActual.setText(kelvinToCelsius(response.body().getMain().getTemp()));
+                    } else {
+                        Toast.makeText(getApplicationContext(), getString(R.string.error_api_call), Toast.LENGTH_LONG).show();
+                    }
                 }
 
                 @Override
-                public void onFailure(Call<WeatherData> call, Throwable t) {
+                public void onFailure(@NonNull Call<WeatherData> call, @NonNull Throwable t) {
                     Toast.makeText(MainActivity.this, "Error = " + t, Toast.LENGTH_LONG).show();
                 }
             });
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, "Error = " + e, Toast.LENGTH_LONG).show();
         }
+    }
+
+    public String kelvinToCelsius(Double kelvin) {
+        Double celsius =  kelvin - 273.15F;
+        Locale current = getResources().getConfiguration().locale;
+        return String.format(current, "%.0f°C", celsius);
     }
 }
