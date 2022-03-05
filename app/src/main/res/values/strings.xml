@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">WeatherRetrofit</string>
-    <string name="london">London</string>
-    <string name="tv_temp_actual">26°C</string>
+    <string name="london">No city</string>
+    <string name="tv_temp_actual">-°C</string>
     <string name="current_temperature">Current temperature</string>
     <string name="maximum_temperature">Maximum Temperature</string>
     <string name="minimum_temperature">Minimum temperature</string>
     <string name="error_api_call">An error happened</string>
     <string name="loading">Loading</string>
     <string name="loading_place">Getting place Weather Data</string>
+    <string name="button_close">button close</string>
+    <string name="no_internet">You don\'t have internet access</string>
 </resources>

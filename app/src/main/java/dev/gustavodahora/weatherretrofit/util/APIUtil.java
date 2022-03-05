@@ -2,6 +2,7 @@ package dev.gustavodahora.weatherretrofit.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -80,9 +81,7 @@ public class APIUtil {
                 public void onFailure(@NonNull Call<WeatherData> call,
                                       @NonNull Throwable t) {
                     mainActivity.dismissDialog();
-                    Toast.makeText(activity,
-                            "Error = " + t,
-                            Toast.LENGTH_LONG).show();
+                    mainActivity.showErrorToGetApi();
                 }
             });
         } catch (Exception e) {

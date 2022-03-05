@@ -2,17 +2,17 @@ package dev.gustavodahora.weatherretrofit;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import dev.gustavodahora.weatherretrofit.model.appweather.AppWeatherData;
 import dev.gustavodahora.weatherretrofit.util.APIUtil;
+import dev.gustavodahora.weatherretrofit.util.SnackBarUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,5 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void dismissDialog() {
         pd.dismiss();
+    }
+
+    public void showErrorToGetApi() {
+        ConstraintLayout view = findViewById(R.id.main_view);
+        SnackBarUtil.showLong(view, getString(R.string.no_internet), this);
     }
 }
