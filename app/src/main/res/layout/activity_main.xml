@@ -4,68 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/gray_background"
+    >
 
     <TextView
         android:id="@+id/tv_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_black"
         android:text="@string/london"
-        android:textSize="22sp"
-        android:layout_marginTop="22sp"
+        android:textColor="@color/yellow"
+        android:textSize="28sp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/current_temperature"/>
+            android:fontFamily="@font/nunito_black"
+            android:text="@string/current_temperature"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/tv_temp_actual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_black"
             android:text="@string/tv_temp_actual"
-            android:textSize="22sp"
-            />
+            android:textColor="@color/white"
+            android:textSize="28sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/maximum_temperature"/>
+            android:fontFamily="@font/nunito_black"
+            android:text="@string/maximum_temperature"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/tv_temp_min"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_black"
             android:text="@string/tv_temp_actual"
-            android:textSize="22sp"
-            />
+            android:textColor="@color/white"
+            android:textSize="28sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/minimum_temperature"/>
+            android:fontFamily="@font/nunito_black"
+            android:text="@string/minimum_temperature"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/tv_temp_max"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_black"
             android:text="@string/tv_temp_actual"
-            android:textSize="22sp"
-            />
+            android:textColor="@color/white"
+            android:textSize="28sp" />
 
     </LinearLayout>
 

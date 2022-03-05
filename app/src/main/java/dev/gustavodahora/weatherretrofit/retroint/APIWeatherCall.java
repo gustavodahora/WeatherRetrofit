@@ -10,6 +10,6 @@ public interface APIWeatherCall {
 
     String API_KEY = "97c5571d9fc1e803990872a56dbe037f";
 
-    @GET("weather?lat=35&lon=139&appid=97c5571d9fc1e803990872a56dbe037f")
+    @GET("weather?lat=-23.5249082&lon=-46.3445663&&appid=97c5571d9fc1e803990872a56dbe037f")
     Call<WeatherData> getWeatherData();
 }
