@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/ln_main_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -40,6 +40,79 @@
             android:textColor="@color/white"
             android:textSize="100sp" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/tv_label_feels_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/nunito_black"
+                android:text="@string/feels_like"
+                android:layout_marginEnd="4dp"
+                android:textColor="@color/gray_light"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_feels_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/nunito_black"
+                android:text="@string/tv_temp_actual"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/tv_label_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/nunito_black"
+                android:text="@string/humidity"
+                android:layout_marginEnd="4dp"
+                android:textColor="@color/gray_light"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/nunito_black"
+                android:text="@string/humidity_standard"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                />
+
+            <ImageView
+                android:id="@+id/img_alert"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="4dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_alert_start"
+                android:contentDescription="@string/image_alert"
+                />
+
+        </LinearLayout>
     </LinearLayout>
 
     <ImageButton

@@ -2,7 +2,6 @@ package dev.gustavodahora.weatherretrofit.util;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -100,6 +99,12 @@ public class APIUtil {
             appWeatherData.setKelvinTemp(responseData.body().getMain().getTemp());
             appWeatherData.setCelsius(kelvinToCelsius(responseData.
                     body().getMain().getTemp()));
+            appWeatherData.setFeelsLike(kelvinToCelsius(responseData.
+                    body().getMain().getFeelsLike()));
+            appWeatherData.setHumidity(setHumidityString(responseData.
+                    body().getMain().getHumidity()));
+            appWeatherData.setHumidityInt(responseData.
+                    body().getMain().getHumidity());
             mainActivity.responseSetupText();
         }
     }
@@ -108,5 +113,9 @@ public class APIUtil {
         Double celsius =  kelvin - 273.15F;
         Locale current = activity.getResources().getConfiguration().locale;
         return String.format(current, "%.0f°C", celsius);
+    }
+
+    public String setHumidityString(int humidity) {
+        return humidity + "%";
     }
 }

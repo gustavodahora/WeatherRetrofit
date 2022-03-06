@@ -4,6 +4,33 @@ public class AppWeatherData {
     String cityName;
     double kelvinTemp;
     String celsius;
+    String feelsLike;
+    String humidity;
+    int humidityInt;
+
+    public int getHumidityInt() {
+        return humidityInt;
+    }
+
+    public void setHumidityInt(int humidityInt) {
+        this.humidityInt = humidityInt;
+    }
+
+    public String getFeelsLike() {
+        return feelsLike;
+    }
+
+    public String getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
+    }
+
+    public void setFeelsLike(String feelsLike) {
+        this.feelsLike = feelsLike;
+    }
 
     public String getCityName() {
         return cityName;

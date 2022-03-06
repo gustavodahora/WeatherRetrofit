@@ -11,4 +11,8 @@
     <string name="button_close">button close</string>
     <string name="no_internet">You don\'t have internet access</string>
     <string name="refresh_button">refresh button</string>
+    <string name="feels_like">Feels like:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="humidity_standard">70%</string>
+    <string name="image_alert">Image alert</string>
 </resources>
