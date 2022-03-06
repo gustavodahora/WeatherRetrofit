@@ -17,4 +17,5 @@
     <string name="image_alert">Image alert</string>
     <string name="select_a_city">Select a city</string>
     <string name="search">search</string>
+    <string name="change_city">change_city</string>
 </resources>

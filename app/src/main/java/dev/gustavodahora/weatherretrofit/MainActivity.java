@@ -2,6 +2,7 @@ package dev.gustavodahora.weatherretrofit;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvFeelsLike;
     TextView tvHumidity;
     ImageView imgAlert;
+    ImageView imgChangeCity;
 
     AppWeatherData appWeatherData;
     ProgressDialog pd;
@@ -60,8 +62,11 @@ public class MainActivity extends AppCompatActivity {
         tvFeelsLike = findViewById(R.id.tv_feels_like);
         tvHumidity = findViewById(R.id.tv_humidity);
         imgAlert = findViewById(R.id.img_alert);
+        imgChangeCity = findViewById(R.id.img_change_city);
 
         btnRefresh.setOnClickListener(v -> callApi());
+        imgChangeCity.setOnClickListener(v -> startSearchCity());
+        tvCity.setOnClickListener(v -> startSearchCity());
     }
 
     public void callApi() {
@@ -120,4 +125,8 @@ public class MainActivity extends AppCompatActivity {
         city = dbShared.getCity(pref);
         return city;
     }
-}
+
+    public void startSearchCity() {
+        startActivity(new Intent(MainActivity.this, SearchCity.class));
+    }
+ }

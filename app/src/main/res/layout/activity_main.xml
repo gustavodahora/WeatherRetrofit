@@ -10,17 +10,42 @@
     android:background="@color/gray_background"
     >
 
-    <TextView
-        android:id="@+id/tv_city"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ln_title"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_black"
-        android:text="@string/london"
-        android:textColor="@color/yellow"
-        android:textSize="40sp"
         android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/nunito_black"
+            android:maxLines="1"
+            android:text="@string/london"
+            android:textColor="@color/yellow"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/img_change_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contentDescription="@string/change_city"
+            android:focusable="true"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/nunito_black"
+            android:padding="10sp"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:text="@string/london"
+            android:textSize="30sp"
+            app:tint="@color/yellow" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ln_main_data"
@@ -29,7 +54,7 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_city">
+        app:layout_constraintTop_toBottomOf="@+id/ln_title">
 
         <TextView
             android:id="@+id/tv_temp_actual"
@@ -43,21 +68,19 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_label_feels_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/nunito_black"
                 android:text="@string/feels_like"
-                android:layout_marginEnd="4dp"
                 android:textColor="@color/gray_light"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tv_feels_like"
@@ -67,29 +90,26 @@
                 android:fontFamily="@font/nunito_black"
                 android:text="@string/tv_temp_actual"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_label_humidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/nunito_black"
                 android:text="@string/humidity"
-                android:layout_marginEnd="4dp"
                 android:textColor="@color/gray_light"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tv_humidity"
@@ -99,18 +119,16 @@
                 android:fontFamily="@font/nunito_black"
                 android:text="@string/humidity_standard"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/img_alert"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginStart="4dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_alert_start"
+                android:layout_marginStart="4dp"
                 android:contentDescription="@string/image_alert"
-                />
+                android:src="@drawable/ic_alert_start" />
 
         </LinearLayout>
     </LinearLayout>
@@ -119,13 +137,15 @@
         android:id="@+id/btn_refresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_refresh_24"
-        app:tint="@color/white"
         android:backgroundTint="@color/gray_background_dark"
+        android:clickable="true"
+        android:contentDescription="@string/refresh_button"
+        android:focusable="true"
         android:paddingHorizontal="16sp"
         android:paddingVertical="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_city"
-        android:contentDescription="@string/refresh_button" />
+        android:src="@drawable/ic_baseline_refresh_24"
+        app:layout_constraintStart_toEndOf="@+id/ln_main_data"
+        app:layout_constraintTop_toBottomOf="@+id/ln_title"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
