@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -128,5 +129,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void startSearchCity() {
         startActivity(new Intent(MainActivity.this, SearchCity.class));
+    }
+
+    public void notFound() {
+        ConstraintLayout view = findViewById(R.id.main_view);
+        SnackBarUtil.showLong(view, getString(R.string.not_found), context);
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            startActivity(new Intent(MainActivity.this, SearchCity.class));
+            finish();
+        }, 1000);
     }
  }

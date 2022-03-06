@@ -59,6 +59,10 @@ public class APIUtil {
                     // Checking for the response
                     if (response.code() != 200) {
                         mainActivity.dismissDialog();
+                        if (response.code() == 404) {
+                            mainActivity.notFound();
+                            return;
+                        }
                         Toast.makeText(activity,
                                 activity.getString(R.string.error_api_call),
                                 Toast.LENGTH_LONG).show();
