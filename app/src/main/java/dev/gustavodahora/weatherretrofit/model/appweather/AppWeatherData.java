@@ -6,7 +6,16 @@ public class AppWeatherData {
     String celsius;
     String feelsLike;
     String humidity;
+    String speed;
     int humidityInt;
+
+    public String getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(String speed) {
+        this.speed = speed;
+    }
 
     public int getHumidityInt() {
         return humidityInt;

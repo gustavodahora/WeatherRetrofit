@@ -110,6 +110,8 @@ public class APIUtil {
                     body().getMain().getHumidity()));
             appWeatherData.setHumidityInt(responseData.
                     body().getMain().getHumidity());
+            appWeatherData.setSpeed(setSpeedString(responseData.
+                    body().getWind().getSpeed()));
             mainActivity.responseSetupText();
         }
     }
@@ -122,5 +124,9 @@ public class APIUtil {
 
     public String setHumidityString(int humidity) {
         return humidity + "%";
+    }
+
+    public String setSpeedString(double speed) {
+        return speed + " m/s";
     }
 }

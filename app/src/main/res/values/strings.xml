@@ -19,4 +19,5 @@
     <string name="search">search</string>
     <string name="change_city">change_city</string>
     <string name="not_found">City not found</string>
+    <string name="standard_meters_seconds">1.5 m/s</string>
 </resources>

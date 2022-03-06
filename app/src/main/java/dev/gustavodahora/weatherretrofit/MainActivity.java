@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import org.w3c.dom.Text;
+
 import dev.gustavodahora.weatherretrofit.model.appweather.AppWeatherData;
 import dev.gustavodahora.weatherretrofit.util.APIUtil;
 import dev.gustavodahora.weatherretrofit.util.DBShared;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvHumidity;
     ImageView imgAlert;
     ImageView imgChangeCity;
+    TextView tvSpeed;
 
     AppWeatherData appWeatherData;
     ProgressDialog pd;
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         tvHumidity = findViewById(R.id.tv_humidity);
         imgAlert = findViewById(R.id.img_alert);
         imgChangeCity = findViewById(R.id.img_change_city);
+        tvSpeed = findViewById(R.id.tv_speed);
 
         btnRefresh.setOnClickListener(v -> callApi());
         imgChangeCity.setOnClickListener(v -> startSearchCity());
@@ -86,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             tvTempActual.setText(appWeatherData.getCelsius());
             tvFeelsLike.setText(appWeatherData.getFeelsLike());
             tvHumidity.setText(appWeatherData.getHumidity());
+            tvSpeed.setText(appWeatherData.getSpeed());
             setupHumidity();
         } catch (Exception e) {
             Toast.makeText(context,
