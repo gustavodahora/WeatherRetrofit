@@ -3,6 +3,8 @@ package dev.gustavodahora.weatherretrofit.retroint;
 import dev.gustavodahora.weatherretrofit.model.weatherapi.WeatherData;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface APIWeatherCall {
     // https://run.mocky.io/v3/
@@ -10,6 +12,6 @@ public interface APIWeatherCall {
 
     String API_KEY = "97c5571d9fc1e803990872a56dbe037f";
 
-    @GET("weather?lat=-23.5249082&lon=-46.3445663&&appid=97c5571d9fc1e803990872a56dbe037f")
-    Call<WeatherData> getWeatherData();
+    @GET("weather?&appid=97c5571d9fc1e803990872a56dbe037f")
+    Call<WeatherData> getWeatherData(@Query("q") String city);
 }

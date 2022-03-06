@@ -2,6 +2,7 @@ package dev.gustavodahora.weatherretrofit;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import dev.gustavodahora.weatherretrofit.model.appweather.AppWeatherData;
 import dev.gustavodahora.weatherretrofit.util.APIUtil;
+import dev.gustavodahora.weatherretrofit.util.DBShared;
 import dev.gustavodahora.weatherretrofit.util.SnackBarUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +29,13 @@ public class MainActivity extends AppCompatActivity {
     AppWeatherData appWeatherData;
     ProgressDialog pd;
 
+    String city;
+
     Context context;
+
+    final DBShared dbShared = new DBShared();
+
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
         context = getApplicationContext();
 
+        pref = this.getSharedPreferences(
+                "dev.gustavodahora.weatherretrofit",
+                Context.MODE_PRIVATE);
+
+        getCityName();
         setupViews();
         callApi();
     }
@@ -101,5 +114,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             imgAlert.setImageResource(R.drawable.ic_alert_good);
         }
+    }
+
+    public String getCityName() {
+        city = dbShared.getCity(pref);
+        return city;
     }
 }

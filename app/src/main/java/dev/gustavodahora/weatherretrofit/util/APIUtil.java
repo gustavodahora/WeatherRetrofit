@@ -49,7 +49,8 @@ public class APIUtil {
             // instance for interface
             APIWeatherCall apiWeatherCall = retrofit.create(APIWeatherCall.class);
 
-            Call<WeatherData> call = apiWeatherCall.getWeatherData();
+
+            Call<WeatherData> call = apiWeatherCall.getWeatherData(mainActivity.getCityName());
 
             call.enqueue(new Callback<WeatherData>() {
                 @Override
