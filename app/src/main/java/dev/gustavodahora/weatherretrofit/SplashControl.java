@@ -17,7 +17,7 @@ public class SplashControl extends AppCompatActivity {
         setContentView(R.layout.activity_splash_control);
         // Method Region
 
-        setupGetCity();
+        startSearchCity();
     }
 
     public void setupGetCity() {
