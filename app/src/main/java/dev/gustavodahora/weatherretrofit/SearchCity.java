@@ -28,12 +28,9 @@ public class SearchCity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_city);
 
-        pref = this.getSharedPreferences(
-                "dev.gustavodahora.weatherretrofit",
-                Context.MODE_PRIVATE);
-
         context = getApplicationContext();
 
+        setupPref();
         setupViews();
     }
 
@@ -54,5 +51,11 @@ public class SearchCity extends AppCompatActivity {
         } else {
             SnackBarUtil.showLong(constraintLayout, "Enter a city name", context);
         }
+    }
+
+    public void setupPref() {
+        pref = this.getSharedPreferences(
+                "dev.gustavodahora.weatherretrofit",
+                Context.MODE_PRIVATE);
     }
 }

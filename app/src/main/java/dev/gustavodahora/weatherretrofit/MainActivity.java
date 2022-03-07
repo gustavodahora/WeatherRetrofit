@@ -14,8 +14,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import org.w3c.dom.Text;
-
 import dev.gustavodahora.weatherretrofit.model.appweather.AppWeatherData;
 import dev.gustavodahora.weatherretrofit.util.APIUtil;
 import dev.gustavodahora.weatherretrofit.util.DBShared;
@@ -50,10 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         context = getApplicationContext();
 
-        pref = this.getSharedPreferences(
-                "dev.gustavodahora.weatherretrofit",
-                Context.MODE_PRIVATE);
-
+        setupPref();
         getCityName();
         setupViews();
         callApi();
@@ -144,5 +139,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, SearchCity.class));
             finish();
         }, 1000);
+    }
+
+    public void setupPref() {
+        pref = this.getSharedPreferences(
+                "dev.gustavodahora.weatherretrofit",
+                Context.MODE_PRIVATE);
     }
  }
