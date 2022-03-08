@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,13 +23,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import dev.gustavodahora.weatherretrofit.model.geocoderapi.Geocoding;
 import dev.gustavodahora.weatherretrofit.util.APIUtilGeocoder;
 import dev.gustavodahora.weatherretrofit.util.DBShared;
-import dev.gustavodahora.weatherretrofit.util.SnackBarUtil;
 
 public class SearchCity extends AppCompatActivity {
 
@@ -36,6 +38,8 @@ public class SearchCity extends AppCompatActivity {
     LinearLayout lnErrorList;
     RecyclerView recyclerView;
     LinearProgressIndicator linearProgressBar;
+
+    final String endPointFlag = "https://countryflagsapi.com/png/";
 
     final DBShared dbShared = new DBShared();
     SharedPreferences pref;
@@ -141,13 +145,19 @@ public class SearchCity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(CustomAdapter.ViewHolder holder, int position) {
             holder.cityName.setText(cities.get(position).getName());
-            if (cities.get(position).getCountry() != null) {
-                holder.tvCountry.setText(cities.get(position).getCountry());
-            }
             if (cities.get(position).getState() != null) {
                 holder.tvState.setText(cities.get(position).getState());
             }
             holder.ctLayout.setOnClickListener(v -> callNextScreen(cities.get(position).getName()));
+            try {
+                Picasso.get().load(endPointFlag +
+                        cities.get(position).getCountry())
+                        .placeholder(R.drawable.ic_baseline_search_24)
+                        .error(R.drawable.ic_baseline_close_24)
+                        .into(holder.imgFlag);
+            } catch (Exception e) {
+                Toast.makeText(context, e + " ", Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override
@@ -157,16 +167,16 @@ public class SearchCity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             private final TextView cityName;
-            private final TextView tvCountry;
             private final TextView tvState;
             private final ConstraintLayout ctLayout;
+            private final ImageView imgFlag;
 
             public ViewHolder(View view) {
                 super(view);
                 cityName = view.findViewById(R.id.city_name);
-                tvCountry = view.findViewById(R.id.tv_country);
                 tvState = view.findViewById(R.id.tv_state);
                 ctLayout = view.findViewById(R.id.ct_layout);
+                imgFlag = view.findViewById(R.id.img_flag);
             }
         }
     }
