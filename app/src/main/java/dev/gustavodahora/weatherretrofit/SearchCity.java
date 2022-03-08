@@ -81,6 +81,7 @@ public class SearchCity extends AppCompatActivity {
 
             }
         });
+        editTextSearch.requestFocus();
     }
 
     public void saveCity() {
