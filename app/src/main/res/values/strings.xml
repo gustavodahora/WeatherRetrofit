@@ -21,4 +21,7 @@
     <string name="not_found">City not found</string>
     <string name="standard_meters_seconds">1.5 m/s</string>
     <string name="this_is_a_splash">THIS IS A SPLASH</string>
+    <string name="empty_field">The field is empty</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="no_city">No cities found, make sure\nthe name is right.</string>
 </resources>

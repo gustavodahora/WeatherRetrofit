@@ -6,8 +6,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import java.net.HttpURLConnection;
 import java.util.List;
 
+import dev.gustavodahora.weatherretrofit.SearchCity;
 import dev.gustavodahora.weatherretrofit.model.geocoderapi.Geocoding;
 import dev.gustavodahora.weatherretrofit.retroint.APIGeocoderCall;
 import retrofit2.Call;
@@ -21,11 +23,17 @@ public class APIUtilGeocoder {
     String BASE_URL = "https://api.openweathermap.org/geo/1.0/";
     Context context;
     Activity activity;
+    String city;
+    SearchCity searchCity;
 
     public APIUtilGeocoder(Context context,
-                           Activity activity) {
+                           Activity activity,
+                           String city,
+                           SearchCity searchCity) {
         this.context = context;
         this.activity = activity;
+        this.city = city;
+        this.searchCity = searchCity;
     }
 
     public void callApi() {
@@ -44,6 +52,11 @@ public class APIUtilGeocoder {
             call.enqueue(new Callback<List<Geocoding>>() {
                 @Override
                 public void onResponse(@NonNull Call<List<Geocoding>> call, @NonNull Response<List<Geocoding>> response) {
+                    if (response.code() != HttpURLConnection.HTTP_OK && response.body() != null) {
+                        return;
+                    }
+                        assert response.body() != null;
+                        searchCity.generateRecycle(response.body());
                 }
 
                 @Override
