@@ -11,6 +11,6 @@ public interface APIWeatherCall {
 
     String API_KEY = "97c5571d9fc1e803990872a56dbe037f";
 
-    @GET("weather?&appid=97c5571d9fc1e803990872a56dbe037f")
+    @GET("weather?appid=97c5571d9fc1e803990872a56dbe037f")
     Call<WeatherData> getWeatherData(@Query("q") String city);
 }

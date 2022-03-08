@@ -26,6 +26,10 @@ public class Geocoding {
     @Expose
     private String country;
 
+    @SerializedName("state")
+    @Expose
+    private String state;
+
     public String getName() {
         return name;
     }
@@ -60,6 +64,14 @@ public class Geocoding {
 
     public String getCountry() {
         return country;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public void setCountry(String country) {

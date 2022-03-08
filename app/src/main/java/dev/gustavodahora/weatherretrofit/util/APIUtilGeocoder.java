@@ -44,10 +44,12 @@ public class APIUtilGeocoder {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
+            searchCity.showDialog();
+
             // instance for interface
             APIGeocoderCall apiGeocoderCall = retrofit.create(APIGeocoderCall.class);
 
-            Call<List<Geocoding>> call = apiGeocoderCall.getGeocoder();
+            Call<List<Geocoding>> call = apiGeocoderCall.getGeocoder(city);
 
             call.enqueue(new Callback<List<Geocoding>>() {
                 @Override
@@ -57,6 +59,7 @@ public class APIUtilGeocoder {
                     }
                         assert response.body() != null;
                         searchCity.generateRecycle(response.body());
+                        searchCity.dismissDialog();
                 }
 
                 @Override
@@ -64,12 +67,14 @@ public class APIUtilGeocoder {
                     Toast.makeText(activity,
                             "Error = " + t,
                             Toast.LENGTH_LONG).show();
+                    searchCity.dismissDialog();
                 }
             });
         } catch (Exception e) {
             Toast.makeText(activity,
                     "Error = " + e,
                     Toast.LENGTH_LONG).show();
+            searchCity.dismissDialog();
         }
     }
 }
