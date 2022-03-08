@@ -11,6 +11,6 @@ public interface APIGeocoderCall {
     // https://run.mocky.io/v3/
     // a8385ac6-c51f-4cdd-9a41-7e3f2eb77a9c
 
-    @GET("direct?&limit=5&appid=97c5571d9fc1e803990872a56dbe037f")
+    @GET("direct?&limit=6&appid=97c5571d9fc1e803990872a56dbe037f")
     Call<List<Geocoding>> getGeocoder(@Query("q") String city);
 }

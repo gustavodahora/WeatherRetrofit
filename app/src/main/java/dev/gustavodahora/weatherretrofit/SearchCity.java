@@ -1,6 +1,7 @@
 package dev.gustavodahora.weatherretrofit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -79,15 +80,6 @@ public class SearchCity extends AppCompatActivity {
     }
 
     public void saveCity() {
-//        ConstraintLayout constraintLayout = findViewById(R.id.main_view);
-//        if (!editTextSearch.getText().toString().isEmpty()
-//        ) {
-//            dbShared.setCity(pref, editTextSearch.getText().toString());
-//            startActivity(new Intent(SearchCity.this, MainActivity.class));
-//            finish();
-//        } else {
-//            SnackBarUtil.showLong(constraintLayout, "Enter a city name", context);
-//        }
         String city = editTextSearch.getText().toString();
         if (!city.isEmpty()) {
             APIUtilGeocoder apiUtilGeocoder = new APIUtilGeocoder(context,
@@ -133,7 +125,7 @@ public class SearchCity extends AppCompatActivity {
         linearProgressBar.setVisibility(View.VISIBLE);
     }
 
-    public static class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+    public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
         private List<Geocoding> cities;
         public CustomAdapter (List<Geocoding> cities){
             this.cities = cities;
@@ -155,6 +147,7 @@ public class SearchCity extends AppCompatActivity {
             if (cities.get(position).getState() != null) {
                 holder.tvState.setText(cities.get(position).getState());
             }
+            holder.ctLayout.setOnClickListener(v -> callNextScreen(cities.get(position).getName()));
         }
 
         @Override
@@ -162,17 +155,27 @@ public class SearchCity extends AppCompatActivity {
             return this.cities.size();
         }
 
-        public static class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder {
             private final TextView cityName;
             private final TextView tvCountry;
             private final TextView tvState;
+            private final ConstraintLayout ctLayout;
 
             public ViewHolder(View view) {
                 super(view);
                 cityName = view.findViewById(R.id.city_name);
                 tvCountry = view.findViewById(R.id.tv_country);
                 tvState = view.findViewById(R.id.tv_state);
+                ctLayout = view.findViewById(R.id.ct_layout);
             }
+        }
+    }
+
+    public void callNextScreen(String cityName) {
+        if (cityName.length() > 0) {
+            dbShared.setCity(pref, cityName);
+            startActivity(new Intent(SearchCity.this, MainActivity.class));
+            finish();
         }
     }
 
