@@ -14,9 +14,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.squareup.picasso.Picasso;
+
 import dev.gustavodahora.weatherretrofit.model.appweather.AppWeatherData;
 import dev.gustavodahora.weatherretrofit.model.geocoderapi.Geocoding;
 import dev.gustavodahora.weatherretrofit.util.APIUtil;
+import dev.gustavodahora.weatherretrofit.util.ConstUtil;
 import dev.gustavodahora.weatherretrofit.util.DBShared;
 import dev.gustavodahora.weatherretrofit.util.SnackBarUtil;
 
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView imgAlert;
     ImageView imgChangeCity;
     TextView tvSpeed;
+    ImageView imgFlag;
 
     AppWeatherData appWeatherData;
     ProgressDialog pd;
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         getCityName();
         setupViews();
         callApi();
+        setupFlag();
     }
 
     public void setupViews() {
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         imgAlert = findViewById(R.id.img_alert);
         imgChangeCity = findViewById(R.id.img_change_city);
         tvSpeed = findViewById(R.id.tv_speed);
+        imgFlag = findViewById(R.id.img_flag);
 
         btnRefresh.setOnClickListener(v -> callApi());
         imgChangeCity.setOnClickListener(v -> startSearchCity());
@@ -168,6 +174,18 @@ public class MainActivity extends AppCompatActivity {
 
     public double getLongitude() {
         return lon;
+    }
+
+    public void setupFlag() {
+        try {
+            Picasso.get().load(ConstUtil.endPointFlag +
+                    country)
+                    .placeholder(R.drawable.ic_baseline_search_24)
+                    .error(R.drawable.ic_baseline_close_24)
+                    .into(imgFlag);
+        } catch (Exception e) {
+            Toast.makeText(context, e + " ", Toast.LENGTH_SHORT).show();
+        }
     }
 
  }

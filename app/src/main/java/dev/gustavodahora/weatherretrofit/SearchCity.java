@@ -29,6 +29,7 @@ import java.util.List;
 
 import dev.gustavodahora.weatherretrofit.model.geocoderapi.Geocoding;
 import dev.gustavodahora.weatherretrofit.util.APIUtilGeocoder;
+import dev.gustavodahora.weatherretrofit.util.ConstUtil;
 import dev.gustavodahora.weatherretrofit.util.DBShared;
 
 public class SearchCity extends AppCompatActivity {
@@ -38,8 +39,6 @@ public class SearchCity extends AppCompatActivity {
     LinearLayout lnErrorList;
     RecyclerView recyclerView;
     LinearProgressIndicator linearProgressBar;
-
-    final String endPointFlag = "https://countryflagsapi.com/png/";
 
     final DBShared dbShared = new DBShared();
     SharedPreferences pref;
@@ -154,7 +153,7 @@ public class SearchCity extends AppCompatActivity {
                 callNextScreen();
             });
             try {
-                Picasso.get().load(endPointFlag +
+                Picasso.get().load(ConstUtil.endPointFlag +
                         cities.get(position).getCountry())
                         .placeholder(R.drawable.ic_baseline_search_24)
                         .error(R.drawable.ic_baseline_close_24)
