@@ -64,11 +64,11 @@ public class SearchCity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         linearProgressBar = findViewById(R.id.linear_progress_bar);
 
-        btnSearch.setOnClickListener(v -> saveCity());
+        btnSearch.setOnClickListener(v -> searchCity());
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                saveCity();
+                searchCity();
             }
 
             @Override
@@ -84,7 +84,7 @@ public class SearchCity extends AppCompatActivity {
         editTextSearch.requestFocus();
     }
 
-    public void saveCity() {
+    public void searchCity() {
         String city = editTextSearch.getText().toString();
         if (!city.isEmpty()) {
             APIUtilGeocoder apiUtilGeocoder = new APIUtilGeocoder(context,
@@ -131,7 +131,7 @@ public class SearchCity extends AppCompatActivity {
     }
 
     public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
-        private List<Geocoding> cities;
+        private final List<Geocoding> cities;
         public CustomAdapter (List<Geocoding> cities){
             this.cities = cities;
         }
@@ -149,7 +149,10 @@ public class SearchCity extends AppCompatActivity {
             if (cities.get(position).getState() != null) {
                 holder.tvState.setText(cities.get(position).getState());
             }
-            holder.ctLayout.setOnClickListener(v -> callNextScreen(cities.get(position).getName()));
+            holder.ctLayout.setOnClickListener(v -> {
+                saveOnDBShared(cities.get(position));
+                callNextScreen();
+            });
             try {
                 Picasso.get().load(endPointFlag +
                         cities.get(position).getCountry())
@@ -182,12 +185,17 @@ public class SearchCity extends AppCompatActivity {
         }
     }
 
-    public void callNextScreen(String cityName) {
-        if (cityName.length() > 0) {
-            dbShared.setCity(pref, cityName);
-            startActivity(new Intent(SearchCity.this, MainActivity.class));
-            finish();
-        }
+    public void callNextScreen() {
+        startActivity(new Intent(SearchCity.this, MainActivity.class));
+        finish();
+    }
+
+    public void saveOnDBShared(Geocoding geocoding) {
+        dbShared.setCity(pref, geocoding.getName());
+        dbShared.setState(pref, geocoding.getState());
+        dbShared.setCountry(pref, geocoding.getCountry());
+        dbShared.setLatitude(pref, geocoding.getLat());
+        dbShared.setLongitude(pref, geocoding.getLon());
     }
 
 }

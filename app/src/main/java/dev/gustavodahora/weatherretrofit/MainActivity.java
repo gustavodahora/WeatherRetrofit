@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import dev.gustavodahora.weatherretrofit.model.appweather.AppWeatherData;
+import dev.gustavodahora.weatherretrofit.model.geocoderapi.Geocoding;
 import dev.gustavodahora.weatherretrofit.util.APIUtil;
 import dev.gustavodahora.weatherretrofit.util.DBShared;
 import dev.gustavodahora.weatherretrofit.util.SnackBarUtil;
@@ -34,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog pd;
 
     String city;
+    String state;
+    String country;
+
+    double lat;
+    double lon;
 
     Context context;
 
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         setupPref();
+        getDBSharedValues();
         getCityName();
         setupViews();
         callApi();
@@ -146,4 +153,21 @@ public class MainActivity extends AppCompatActivity {
                 "dev.gustavodahora.weatherretrofit",
                 Context.MODE_PRIVATE);
     }
+
+    public void getDBSharedValues() {
+        city = dbShared.getCity(pref);
+        state = dbShared.getState(pref);
+        country = dbShared.getCountry(pref);
+        lat = dbShared.getLatitude(pref);
+        lon = dbShared.getLongitude(pref);
+    }
+
+    public double getLatitude() {
+        return lat;
+    }
+
+    public double getLongitude() {
+        return lon;
+    }
+
  }

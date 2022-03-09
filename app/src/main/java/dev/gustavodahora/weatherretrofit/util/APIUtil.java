@@ -50,7 +50,9 @@ public class APIUtil {
             APIWeatherCall apiWeatherCall = retrofit.create(APIWeatherCall.class);
 
 
-            Call<WeatherData> call = apiWeatherCall.getWeatherData(mainActivity.getCityName());
+            Call<WeatherData> call = apiWeatherCall.getWeatherData(
+                    mainActivity.getLatitude(),
+                    mainActivity.getLongitude());
 
             call.enqueue(new Callback<WeatherData>() {
                 @Override
